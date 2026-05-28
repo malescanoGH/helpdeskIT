@@ -1,0 +1,73 @@
+.dashboard-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-card {
+  margin-bottom: 24px;
+  padding: 16px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header-content p {
+  margin: 4px 0 0;
+  color: #666;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.form-card {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.form-card h3 {
+  margin-top: 0;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  color: #999;
+}
+
+.empty-state mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+}

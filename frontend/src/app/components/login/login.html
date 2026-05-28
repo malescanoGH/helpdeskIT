@@ -1,0 +1,30 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>HelpDesk IT</mat-card-title>
+      <mat-card-subtitle>Iniciá sesión para continuar</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" placeholder="tu@email.com">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="password" placeholder="••••••">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" class="full-width" (click)="login()">
+        Iniciar sesión
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

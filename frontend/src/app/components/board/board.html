@@ -1,0 +1,88 @@
+<div class="board-container">
+  <div class="board-header">
+    <button mat-icon-button routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Tablero Kanban</h2>
+    <button mat-raised-button color="primary" (click)="showColumnForm = !showColumnForm">
+      <mat-icon>add</mat-icon> Nueva Columna
+    </button>
+  </div>
+
+  <div *ngIf="showColumnForm" class="column-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre de columna</mat-label>
+      <input matInput [(ngModel)]="nuevaColumna.nombre">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="crearColumna()">Crear</button>
+    <button mat-button (click)="showColumnForm = false">Cancelar</button>
+  </div>
+
+  <div class="kanban-board">
+    <div *ngFor="let col of columns" class="kanban-column">
+      <div class="column-header">
+        <span class="column-title">{{ col.nombre }}</span>
+        <span class="ticket-count">{{ (ticketsPorColumna[col.idColumn!] || []).length }}</span>
+      </div>
+
+      <div
+        cdkDropList
+        [id]="'col-' + col.idColumn"
+        [cdkDropListData]="ticketsPorColumna[col.idColumn!] || []"
+        [cdkDropListConnectedTo]="getConnectedLists()"
+        (cdkDropListDropped)="onDrop($event, col.idColumn!)"
+        class="tickets-list">
+
+        <mat-card
+          *ngFor="let ticket of ticketsPorColumna[col.idColumn!] || []"
+          cdkDrag
+          class="ticket-card">
+          <div class="ticket-priority" [style.background]="getPrioridadColor(ticket.prioridad)"></div>
+          <mat-card-content>
+            <p class="ticket-titulo">{{ ticket.titulo }}</p>
+            <p class="ticket-desc">{{ ticket.descripcion }}</p>
+            <div class="ticket-footer">
+              <span class="prioridad-badge" [style.color]="getPrioridadColor(ticket.prioridad)">
+                {{ ticket.prioridad }}
+              </span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <div *ngIf="(ticketsPorColumna[col.idColumn!] || []).length === 0" class="empty-column">
+          Arrastrá tickets acá
+        </div>
+      </div>
+
+      <div *ngIf="showTicketForm[col.idColumn!]" class="ticket-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Título</mat-label>
+          <input matInput [(ngModel)]="nuevoTicket.titulo">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <input matInput [(ngModel)]="nuevoTicket.descripcion">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Prioridad</mat-label>
+          <mat-select [(ngModel)]="nuevoTicket.prioridad">
+            <mat-option value="ALTA">Alta</mat-option>
+            <mat-option value="MEDIA">Media</mat-option>
+            <mat-option value="BAJA">Baja</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="crearTicket(col.idColumn!)">Guardar</button>
+        <button mat-button (click)="showTicketForm[col.idColumn!] = false">Cancelar</button>
+      </div>
+
+      <button mat-button class="add-ticket-btn" (click)="showTicketForm[col.idColumn!] = true">
+        <mat-icon>add</mat-icon> Agregar ticket
+      </button>
+    </div>
+
+    <div *ngIf="columns.length === 0" class="empty-board">
+      <mat-icon>view_column</mat-icon>
+      <p>No hay columnas todavía. ¡Creá una!</p>
+    </div>
+  </div>
+</div>
