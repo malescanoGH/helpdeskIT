@@ -1,0 +1,80 @@
+.detail-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.detail-header h2 {
+  flex: 1;
+  margin: 0;
+}
+
+.info-card {
+  margin-bottom: 24px;
+  padding: 8px;
+}
+
+.ticket-titulo {
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.ticket-desc {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.ticket-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.prioridad-chip, .estado-chip, .fecha-chip {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.estado-chip {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.fecha-chip {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.edit-form { display: flex; flex-direction: column; gap: 8px; }
+.edit-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.full-width { width: 100%; }
+
+.comments-card { padding: 8px; }
+
+.comment { padding: 12px 0; }
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.comment-icon { color: #999; }
+.comment-user { font-weight: 500; font-size: 14px; }
+.comment-date { font-size: 12px; color: #999; margin-left: auto; }
+.comment-text { margin: 0 0 12px; color: #444; padding-left: 32px; }
+
+.no-comments { text-align: center; color: #999; padding: 24px; }
+
+.add-comment { margin-top: 16px; }

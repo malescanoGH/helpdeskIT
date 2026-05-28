@@ -36,7 +36,8 @@
         <mat-card
           *ngFor="let ticket of ticketsPorColumna[col.idColumn!] || []"
           cdkDrag
-          class="ticket-card">
+          class="ticket-card"
+          (click)="abrirTicket(ticket)">
           <div class="ticket-priority" [style.background]="getPrioridadColor(ticket.prioridad)"></div>
           <mat-card-content>
             <p class="ticket-titulo">{{ ticket.titulo }}</p>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardService, BoardColumn } from '../../services/board';
 import { TicketService, Ticket } from '../../services/ticket';
+
 
 @Component({
   selector: 'app-board',
@@ -33,6 +34,7 @@ export class Board implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private boardService: BoardService,
     private ticketService: TicketService,
     private cdr: ChangeDetectorRef
@@ -117,6 +119,10 @@ export class Board implements OnInit {
     });
   }
 
+  abrirTicket(ticket: Ticket) {
+  this.router.navigate(['/ticket', ticket.idTicket]);
+}
+
   crearTicket(idColumn: number) {
     this.nuevoTicket.column = { idColumn };
     this.nuevoTicket.creadoPor = { idUser: this.usuario.idUser };
@@ -138,3 +144,4 @@ export class Board implements OnInit {
     }
   }
 }
+

@@ -1,1 +1,102 @@
-<p>ticket-detail works!</p>
+<div class="detail-container">
+  <div class="detail-header">
+    <button mat-icon-button (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Detalle del Ticket</h2>
+    <button mat-raised-button color="primary" (click)="editando = !editando">
+      <mat-icon>{{ editando ? 'close' : 'edit' }}</mat-icon>
+      {{ editando ? 'Cancelar' : 'Editar' }}
+    </button>
+  </div>
+
+  <div class="detail-content" *ngIf="ticket">
+    <mat-card class="info-card">
+      <mat-card-content>
+
+        <div *ngIf="!editando">
+          <h1 class="ticket-titulo">{{ ticket.titulo }}</h1>
+          <p class="ticket-desc">{{ ticket.descripcion }}</p>
+          <div class="ticket-meta">
+            <span class="prioridad-chip" [style.background]="getPrioridadColor(ticket.prioridad) + '22'" [style.color]="getPrioridadColor(ticket.prioridad)">
+              {{ ticket.prioridad }}
+            </span>
+            <span class="estado-chip">{{ ticket.estado }}</span>
+            <span *ngIf="ticket.dueDate" class="fecha-chip">
+              <mat-icon style="font-size:14px;vertical-align:middle">calendar_today</mat-icon>
+              {{ ticket.dueDate }}
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="editando" class="edit-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Título</mat-label>
+            <input matInput [(ngModel)]="ticket.titulo">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput [(ngModel)]="ticket.descripcion" rows="4"></textarea>
+          </mat-form-field>
+          <div class="edit-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Prioridad</mat-label>
+              <mat-select [(ngModel)]="ticket.prioridad">
+                <mat-option value="ALTA">Alta</mat-option>
+                <mat-option value="MEDIA">Media</mat-option>
+                <mat-option value="BAJA">Baja</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <mat-select [(ngModel)]="ticket.estado">
+                <mat-option value="TODO">Por hacer</mat-option>
+                <mat-option value="IN_PROGRESS">En progreso</mat-option>
+                <mat-option value="DONE">Hecho</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha límite</mat-label>
+              <input matInput type="date" [(ngModel)]="ticket.dueDate">
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" (click)="guardarCambios()">
+            <mat-icon>save</mat-icon> Guardar
+          </button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="comments-card">
+      <mat-card-header>
+        <mat-card-title>Comentarios ({{ comments.length }})</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="comment" *ngFor="let comment of comments">
+          <div class="comment-header">
+            <mat-icon class="comment-icon">account_circle</mat-icon>
+            <span class="comment-user">{{ comment.usuario?.nombre }}</span>
+            <span class="comment-date">{{ comment.fechaComentario | date:'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <p class="comment-text">{{ comment.texto }}</p>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div *ngIf="comments.length === 0" class="no-comments">
+          No hay comentarios todavía.
+        </div>
+
+        <div class="add-comment">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Agregar comentario</mat-label>
+            <textarea matInput [(ngModel)]="nuevoComentario" rows="2"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="agregarComentario()">
+            <mat-icon>send</mat-icon> Comentar
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
