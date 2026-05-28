@@ -22,9 +22,12 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" class="full-width" (click)="login()">
-        Iniciar sesión
-      </button>
-    </mat-card-actions>
+  <button mat-raised-button color="primary" class="full-width" (click)="login()">
+    Iniciar sesión
+  </button>
+  <p class="register-link">
+    ¿No tenés cuenta? <a routerLink="/register">Registrate</a>
+  </p>
+</mat-card-actions>
   </mat-card>
 </div>

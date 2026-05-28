@@ -1,0 +1,46 @@
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>Crear cuenta</mat-card-title>
+      <mat-card-subtitle>Completá tus datos para registrarte</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre completo</mat-label>
+        <input matInput [(ngModel)]="nombre" placeholder="Tu nombre">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" placeholder="tu@email.com">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="password">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirmar contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="confirmarPassword">
+        <mat-icon matSuffix>lock_outline</mat-icon>
+      </mat-form-field>
+
+      <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+      <p class="success-msg" *ngIf="successMsg">{{ successMsg }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" class="full-width" (click)="registrar()">
+        Crear cuenta
+      </button>
+      <p class="login-link">
+        ¿Ya tenés cuenta? <a routerLink="/login">Iniciá sesión</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>
