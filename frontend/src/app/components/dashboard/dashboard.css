@@ -2,11 +2,14 @@
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .header-card {
-  margin-bottom: 24px;
-  padding: 16px;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #1e2130 0%, #252840 100%) !important;
 }
 
 .header-content {
@@ -18,11 +21,14 @@
 .header-content h1 {
   margin: 0;
   font-size: 28px;
+  font-weight: 700;
+  color: #e2e8f0;
 }
 
 .header-content p {
   margin: 4px 0 0;
-  color: #666;
+  color: #8892b0;
+  font-size: 14px;
 }
 
 .header-actions {
@@ -33,10 +39,14 @@
 .form-card {
   padding: 24px;
   margin-bottom: 24px;
+  border-radius: 16px !important;
 }
 
 .form-card h3 {
   margin-top: 0;
+  margin-bottom: 16px;
+  color: #e2e8f0;
+  font-size: 18px;
 }
 
 .full-width {
@@ -52,22 +62,41 @@
 
 .project-card {
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 16px !important;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s !important;
+  padding: 8px;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 32px rgba(91, 106, 240, 0.2) !important;
+  border-color: #5b6af0 !important;
+}
+
+.project-card mat-card-title {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+.project-card mat-card-content p {
+  color: #8892b0;
+  font-size: 14px;
+  margin: 8px 0;
 }
 
 .empty-state {
   text-align: center;
-  padding: 60px;
-  color: #999;
+  padding: 80px;
+  color: #3d4466;
 }
 
 .empty-state mat-icon {
-  font-size: 64px;
-  width: 64px;
-  height: 64px;
+  font-size: 72px;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  font-size: 16px;
 }

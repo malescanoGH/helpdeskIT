@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f1117;
+  color: #e2e8f0;
+}
+
+/* Angular Material dark overrides */
+.mat-mdc-card {
+  background-color: #1e2130 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #2d3348 !important;
+}
+
+.mat-mdc-form-field {
+  color: #e2e8f0 !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: #3d4466 !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: #e2e8f0 !important;
+}
+
+.mat-mdc-form-field-label, .mdc-floating-label {
+  color: #8892b0 !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background-color: #5b6af0 !important;
+  color: #fff !important;
+}
+
+.mat-mdc-raised-button.mat-primary:hover {
+  background-color: #4a57e0 !important;
+}
+
+.mat-mdc-button {
+  color: #8892b0 !important;
+}
+
+.mat-mdc-icon-button {
+  color: #8892b0 !important;
+}
+
+.mat-mdc-card-title {
+  color: #e2e8f0 !important;
+}
+
+.mat-mdc-card-subtitle {
+  color: #8892b0 !important;
+}
+
+.mat-mdc-select-value {
+  color: #e2e8f0 !important;
+}
+
+.mat-mdc-option {
+  background-color: #1e2130 !important;
+  color: #e2e8f0 !important;
+}
+
+.mat-mdc-select-panel {
+  background-color: #1e2130 !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d4466;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5b6af0;
+}
