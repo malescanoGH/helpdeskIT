@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-login',
@@ -30,21 +29,22 @@ export class Login {
   password = '';
   errorMsg = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   login() {
-    this.http.get<any[]>('http://localhost:8080/api/usuarios').subscribe({
-      next: (usuarios) => {
-        const usuario = usuarios.find(u => u.email === this.email && u.password === this.password);
-        if (usuario) {
-          localStorage.setItem('usuario', JSON.stringify(usuario));
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.errorMsg = 'Email o contraseña incorrectos';
-        }
+    const credentials = { email: this.email, password: this.password };
+    this.http.post<any>('http://localhost:8080/api/usuarios/login', credentials).subscribe({
+      next: (usuario) => {
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+        this.router.navigate(['/dashboard']);
       },
       error: () => {
-        this.errorMsg = 'Error conectando con el servidor';
+        this.errorMsg = 'Email o contraseña incorrectos';
+        this.cdr.detectChanges();
       }
     });
   }
